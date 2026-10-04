@@ -62,6 +62,7 @@ export const site = {
 export const developer = {
   name: "S.A. Marrah",
   whatsappNumber: "8619382020640",
+  whatsappDisplay: "+86 19382020640",
   photo: "/images/developer.jpg",
 } as const;
 

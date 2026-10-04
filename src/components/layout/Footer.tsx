@@ -152,6 +152,17 @@ export function Footer() {
             {developer.name}
             <span className="sr-only"> (contact on WhatsApp, opens in a new tab)</span>
           </a>
+            <span aria-hidden="true"> · </span>
+            WhatsApp:{" "}
+            <a
+              href={whatsappLink(developer.whatsappNumber, "Hello, I saw the CEST website and would like to get in touch.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-white underline hover:text-accent-300"
+            >
+              {developer.whatsappDisplay}
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
           </p>
         </div>
       </div>
