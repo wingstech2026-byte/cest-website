@@ -79,7 +79,7 @@ All are optional locally. See [.env.example](.env.example).
 | Variable | Purpose |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Public URL, e.g. `https://www.yourdomain.org`. Used for canonical URLs, sitemap, Open Graph and structured data. **Set this in production.** |
-| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Official WhatsApp number, digits only (e.g. `23277123456`). Until set, the floating button points to the Contact page. |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Optional override of the WhatsApp number (digits only). Defaults to CEST's confirmed `+232 78865887` in `src/data/site.ts`. |
 | `NEXT_PUBLIC_FACEBOOK_URL`, `_X_URL`, `_INSTAGRAM_URL`, `_YOUTUBE_URL`, `_LINKEDIN_URL` | Social links. The footer shows icons only for those that are set. |
 | `NEXT_PUBLIC_MAP_EMBED_URL` | Google Maps embed URL for the Contact page. |
 | `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` | Email delivery of form submissions via [Resend](https://resend.com). |
@@ -145,7 +145,7 @@ To connect a CMS later (Sanity, Strapi, Supabase…), re-implement the functions
 Search the site for yellow `[ … ]` chips, or search the code for `[ADD`. The full list:
 
 1. **Leadership**: names and photos for every role (`[PHOTO] [NAME]`), only once the people have approved publication.
-2. **WhatsApp number**, **social media links**, **Google Maps embed**.
+2. **Social media links**, **Google Maps embed**. (WhatsApp is set to +232 78865887, confirmed by CEST.)
 3. **Donation payment information** (bank/mobile-money/Stripe/PayPal details). Nothing is invented.
 4. **Impact figures**: only verified numbers.
 5. **Project details**: dates, participating schools/pupils, farmers, results, and real status for the *Quiz & Spelling Bee* and *Food Security & Farming* entries.

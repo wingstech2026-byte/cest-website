@@ -28,10 +28,10 @@ export const site = {
     countryCode: "SL",
   },
   /**
-   * WhatsApp number in international format without "+" or spaces, supplied by
-   * CEST via NEXT_PUBLIC_WHATSAPP_NUMBER. Intentionally empty until confirmed.
+   * CEST's official WhatsApp number (confirmed by CEST), international format, digits only.
+   * Can be overridden with NEXT_PUBLIC_WHATSAPP_NUMBER.
    */
-  whatsappNumber: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "").replace(/\D/g, ""),
+  whatsappNumber: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "23278865887").replace(/\D/g, ""),
   /** Social links: leave empty until official pages are confirmed. */
   social: {
     facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL ?? "",
