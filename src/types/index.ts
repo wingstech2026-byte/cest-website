@@ -38,8 +38,15 @@ export interface Project {
   location: string;
   status: ProjectStatus;
   summary: string;
+  /** Overview paragraphs. */
   description: string[];
+  challenge: string;
+  approach: string;
+  activities: string[];
+  beneficiaries: string[];
   impact: string;
+  partners: string[];
+  timeline: Array<{ when: string; what: string }>;
   image?: string;
   imageAlt?: string;
   /** True while the entry is a template waiting for real, verified details. */
@@ -80,6 +87,8 @@ export interface Person {
   photo: string | null;
   group: "executive" | "corporate" | "governance";
   note?: string;
+  /** Only set when CEST officially provides it. */
+  linkedin?: string;
 }
 
 export interface ImpactStat {
@@ -89,6 +98,8 @@ export interface ImpactStat {
   /** null = no verified figure yet; the UI shows "coming soon". */
   value: number | null;
   asOf?: string;
+  /** Shown in the big homepage numbers. */
+  featured?: boolean;
 }
 
 export interface GalleryItem {
@@ -115,3 +126,19 @@ export interface FormState {
   values?: Record<string, string>;
 }
 
+
+export interface Location {
+  id: string;
+  name: string;
+  /** null until CEST confirms a verified operating location. */
+  lat: number | null;
+  lng: number | null;
+  kind: "base" | "project" | "community" | "program" | "placeholder";
+  note: string;
+}
+
+export interface Partner {
+  name: string;
+  logo: string;
+  href?: string;
+}

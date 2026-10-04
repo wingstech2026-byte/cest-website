@@ -27,12 +27,12 @@ const modules = [
 
 export default function AdminPage() {
   return (
-    <Section tone="canvas">
+    <Section tone="canvas" className="pt-36">
       <h1 className="text-3xl font-bold">Admin dashboard (planned)</h1>
       <p className="mt-3 max-w-2xl text-muted">
         This area is a placeholder for CEST’s future content management dashboard. No data is managed here yet.
       </p>
-      <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {modules.map((m) => (
           <li key={m.name} className="rounded-2xl border border-sand-200 bg-white p-5">
             <h2 className="text-lg font-bold">{m.name}</h2>

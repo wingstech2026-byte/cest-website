@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { getPosts } from "@/lib/content";
 import { PageHero } from "@/components/ui/PageHero";
-import { Section } from "@/components/ui/Section";
-import { PostCard } from "@/components/cards/Cards";
+import { Container } from "@/components/ui/Section";
 import { CategoryNav } from "@/components/sections/CategoryNav";
+import { NewsMagazine } from "@/components/home/NewsMagazine";
 import { NewsletterForm } from "@/components/forms/Forms";
 
 export const metadata: Metadata = pageMetadata({
@@ -23,27 +23,19 @@ export default async function NewsPage() {
         intro="Updates, events and stories from CEST and the communities we work with."
         crumbs={[{ label: "News & Stories" }]}
       />
-      <Section tone="canvas">
-        <CategoryNav />
-        {posts.length === 0 ? (
-          <p className="rounded-2xl border border-dashed border-sand-300 p-8 text-center text-muted">No stories have been published yet.</p>
-        ) : (
-          <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((p) => (
-              <li key={p.slug}>
-                <PostCard post={p} />
-              </li>
-            ))}
-          </ul>
-        )}
-      </Section>
-      <Section tone="sand">
-        <div className="mx-auto max-w-xl">
-          <h2 className="text-2xl font-bold">Get CEST news by email</h2>
+      <section className="bg-white py-16 sm:py-24">
+        <Container className="max-w-[90rem]">
+          <CategoryNav />
+          <NewsMagazine posts={posts} />
+        </Container>
+      </section>
+      <section className="bg-sand-100 py-20">
+        <Container className="max-w-xl">
+          <h2 className="font-display text-3xl font-semibold">Get CEST news by email</h2>
           <p className="mb-6 mt-2 text-muted">Occasional updates about our work. Unsubscribe at any time.</p>
           <NewsletterForm />
-        </div>
-      </Section>
+        </Container>
+      </section>
     </>
   );
 }

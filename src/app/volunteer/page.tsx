@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/ui/PageHero";
-import { Section } from "@/components/ui/Section";
-import { VolunteerForm } from "@/components/forms/Forms";
+import { Container } from "@/components/ui/Section";
+import { VolunteerWizard } from "@/components/forms/VolunteerWizard";
+import { Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = pageMetadata({
   title: "Volunteer",
@@ -18,22 +19,31 @@ export default function VolunteerPage() {
         title="Become a volunteer"
         intro="Share your skills, time and passion to help communities thrive."
         crumbs={[{ label: "Get Involved", href: "/get-involved" }, { label: "Volunteer" }]}
+        image="/images/cest/refreshments.jpg"
+        imageAlt="A CEST volunteer serving refreshments to guests at an event"
       />
-      <Section tone="canvas">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <h2 className="text-2xl font-bold">Why volunteer with CEST?</h2>
-            <p className="mt-3 text-muted">
-              Volunteers help CEST deliver training, community engagement and events. You can volunteer in Sierra Leone
-              or from the diaspora. Tell us about yourself and where you would like to help, and we will be in touch.
-            </p>
+      <section className="bg-canvas py-16 sm:py-24">
+        <Container className="max-w-[90rem]">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
+            <div className="min-w-0 lg:col-span-4">
+              <Reveal className="lg:sticky lg:top-32">
+                <h2 className="font-display text-3xl font-semibold uppercase leading-tight sm:text-4xl">Why volunteer with CEST?</h2>
+                <p className="mt-4 text-lg leading-relaxed text-muted">
+                  Volunteers help CEST deliver training, community engagement and events. You can volunteer in Sierra
+                  Leone or from the diaspora.
+                </p>
+                <p className="mt-4 text-muted">
+                  Five short steps: tell us about yourself, your skills, where you would like to help and when you are
+                  available. We will review your application and contact you.
+                </p>
+              </Reveal>
+            </div>
+            <div className="min-w-0 rounded-3xl border border-sand-300 bg-white p-5 shadow-card sm:p-10 lg:col-span-8">
+              <VolunteerWizard />
+            </div>
           </div>
-          <div className="rounded-[var(--radius-card)] border border-sand-200 bg-white p-6 shadow-card sm:p-8 lg:col-span-8">
-            <h2 className="mb-6 text-2xl font-bold">Volunteer application</h2>
-            <VolunteerForm />
-          </div>
-        </div>
-      </Section>
+        </Container>
+      </section>
     </>
   );
 }

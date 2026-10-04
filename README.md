@@ -2,7 +2,7 @@
 
 > “Building a Better Community”: official website MVP for CEST, Masingbi, Sierra Leone.
 
-Built with **Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4 · Zod · lucide-react**.
+Built with **Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4 · Motion (framer-motion successor) · Zod · lucide-react**.
 Content comes from the CEST Constitution (adopted 14 January 2022) and CEST’s own documents and photos.
 Anything not confirmed is marked with a yellow dashed `[PLACEHOLDER]` chip so it cannot be missed.
 
@@ -32,6 +32,26 @@ In development, forms succeed and print the submission to the terminal (nothing 
 | Type-check | `npx tsc --noEmit` |
 | Production build | `npm run build` |
 | Run the production build | `npm run start` (after `npm run build`) |
+
+## 2b. Design and motion system
+
+The site is a cinematic, editorial experience: oversized serif headlines (Fraunces) over Inter, full-bleed photography, and a homepage that works as a journey (hero → "change starts with people" → impact numbers → what we do → interactive programs → stories → documentary → history → mission/vision → projects → get involved → accountability → news → partners → donate → footer).
+
+* **CSS-only hero** (`globals.css`): background fade (0 ms), headline (200 ms), description (400 ms), buttons (600 ms), scroll cue (800 ms). It paints instantly with no JavaScript.
+* **Motion components** (`src/components/motion`): `Reveal`/`RevealGroup`, `AnimatedHeading` (line-by-line mask reveal), `ImageReveal` (clip-path wipe), `ParallaxImage`, `Counter` (count-up), `useScrollStages` (scroll-driven storytelling). Animation features load lazily (`LazyMotion`) and only `transform`/`opacity` are animated.
+* **Reduced motion** (`prefers-reduced-motion`): parallax, counters, zoom and the scroll-driven sections are replaced by simple static layouts. The custom cursor, parallax and heavy effects are also disabled on touch and small screens.
+* **No JavaScript**: a `<noscript>` rule keeps scroll-reveal content visible.
+* **Page transitions**: a 300 ms CSS fade (`src/app/template.tsx`).
+* **Custom cursor**: add `data-cursor="VIEW"` (or EXPLORE, SUPPORT…) to any element.
+
+### New content files
+| File | Purpose |
+| --- | --- |
+| `src/data/story.ts` | Timeline, "change starts with…" words, documentary stages (only documented facts; "the result" is a placeholder) |
+| `src/data/locations.ts` | "Where we work": only Masingbi is verified; add more and they appear on the map |
+| `src/data/partners.ts` | Partner logos (empty until supplied; grayscale → colour on hover) |
+| `src/data/documents.ts` | Accountability documents. **The constitution PDF is published from `public/documents/`** (see §8) |
+| `src/lib/payments.ts` | Payment-provider architecture (Stripe, PayPal, mobile money, bank). Every provider is disabled |
 
 ## 3. Project structure
 
@@ -168,6 +188,10 @@ Search the site for yellow `[ … ]` chips, or search the code for `[ADD`. The f
 * The Corporate Affairs Commission certificate spells the name “Community Engagement for Sustainable Trasformation”. The site uses the correct name from the constitution. Consider correcting the certificate.
 * **Registration/serial numbers** are deliberately **not** published.
 * **Founder names** appear in the constitution but are not published; add them in `src/data/leadership.ts` once approved.
+
+* **Constitution PDF is public.** The Accountability page shows and offers the full constitution for download, as requested. It contains the founders' names and internal clauses (for example the founders' 10% corporate-profit entitlement, fines, loan and cheque-signatory rules). If CEST would rather not publish those, set `available: false` in `src/data/documents.ts` and delete `public/documents/cest-constitution.pdf`, or replace it with a public summary.
+* **Photo resolution.** The supplied photos are small (about 1000 px wide), so full-screen sections look soft on large monitors. Replace them with higher-resolution originals (at least 2000 px wide) for the best result.
+* **Programs without a photo** (entrepreneurship, health & sanitation, research, youth) show a designed, labelled "Photo to be added" panel rather than an unrelated image.
 
 ## 9. Accessibility, SEO and performance
 

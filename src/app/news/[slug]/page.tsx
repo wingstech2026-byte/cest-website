@@ -126,7 +126,7 @@ export default async function PostPage({ params }: Props) {
       {related.length > 0 && (
         <Section tone="sand" labelledBy="related-title">
           <SectionHeading title="Related stories" id="related-title" />
-          <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {related.map((p) => (
               <li key={p.slug}>
                 <PostCard post={p} />

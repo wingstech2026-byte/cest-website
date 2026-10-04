@@ -11,13 +11,13 @@ export function Container({
   narrow?: boolean;
 }) {
   return (
-    <div className={cn("mx-auto w-full px-5 sm:px-8", narrow ? "max-w-3xl" : "max-w-7xl", className)}>
+    <div className={cn("mx-auto w-full px-5 sm:px-8", !className?.includes("max-w-") && (narrow ? "max-w-3xl" : "max-w-[90rem]"), className)}>
       {children}
     </div>
   );
 }
 
-type Tone = "canvas" | "white" | "sand" | "green" | "blue";
+type Tone = "canvas" | "white" | "sand" | "green" | "blue" | "night";
 
 const tones: Record<Tone, string> = {
   canvas: "bg-canvas text-ink",
@@ -25,6 +25,7 @@ const tones: Record<Tone, string> = {
   sand: "bg-sand-100 text-ink",
   green: "bg-primary-800 text-white",
   blue: "bg-secondary-800 text-white",
+  night: "bg-night text-white",
 };
 
 export function Section({
@@ -71,7 +72,7 @@ export function SectionHeading({
           {eyebrow}
         </p>
       )}
-      <Tag id={id} className="text-3xl font-bold sm:text-4xl">
+      <Tag id={id} className="font-display text-3xl font-semibold sm:text-5xl">
         {title}
       </Tag>
       {intro && (

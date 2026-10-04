@@ -36,7 +36,7 @@ export default function MembershipPage() {
         crumbs={[{ label: "Get Involved", href: "/get-involved" }, { label: "Membership" }]}
       />
       <Section tone="canvas">
-        <div className="grid gap-12 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="space-y-8 lg:col-span-5">
             <div>
               <h2 className="text-2xl font-bold">Who can join</h2>

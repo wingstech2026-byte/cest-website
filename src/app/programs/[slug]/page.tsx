@@ -66,7 +66,7 @@ export default async function ProgramPage({ params }: Props) {
       />
 
       <Section tone="canvas">
-        <div className="grid gap-10 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           <div className="rounded-[var(--radius-card)] border border-sand-200 bg-white p-7 shadow-card">
             <h2 className="mb-4 text-2xl font-bold">Objectives</h2>
             <List items={program.objectives} />
@@ -112,7 +112,7 @@ export default async function ProgramPage({ params }: Props) {
 
       <Section tone="sand">
         <SectionHeading title="Other programs" />
-        <ul className="grid gap-6 md:grid-cols-3">
+        <ul className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {others.map((p) => (
             <li key={p.slug}>
               <ProgramCard program={p} />

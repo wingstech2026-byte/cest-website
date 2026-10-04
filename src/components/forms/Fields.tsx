@@ -197,3 +197,57 @@ export function CheckboxField({
     </div>
   );
 }
+
+/** Single-choice answers presented as large selectable chips (radio inputs underneath). */
+export function ChipGroupField({
+  name,
+  label,
+  required,
+  options,
+  hint,
+}: {
+  name: string;
+  label: string;
+  required?: boolean;
+  options: readonly string[];
+  hint?: string;
+}) {
+  const state = useFormState();
+  const formId = useFormId();
+  const id = `${formId}-${name}`;
+  const error = state.fieldErrors?.[name]?.[0];
+  const value = state.values?.[name];
+  return (
+    <fieldset aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined}>
+      <legend className="mb-3 text-sm font-semibold">
+        {label}
+        {required && (
+          <span className="ml-1 text-red-700" aria-hidden="true">
+            *
+          </span>
+        )}
+      </legend>
+      <div className="flex flex-wrap gap-2.5">
+        {options.map((o) => (
+          <label
+            key={o + String(value)}
+            className="cursor-pointer rounded-full border-2 border-sand-300 bg-white px-4 py-2.5 text-[0.95rem] font-semibold transition-all duration-200 hover:border-primary-600 has-[:checked]:scale-[1.03] has-[:checked]:border-primary-700 has-[:checked]:bg-primary-700 has-[:checked]:text-white has-[:focus-visible]:outline has-[:focus-visible]:outline-[3px] has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-secondary-600"
+          >
+            <input type="radio" name={name} value={o} defaultChecked={value === o} className="sr-only" />
+            {o}
+          </label>
+        ))}
+      </div>
+      {hint && !error && (
+        <p id={`${id}-hint`} className="mt-2 text-sm text-muted">
+          {hint}
+        </p>
+      )}
+      {error && (
+        <p id={`${id}-error`} className="mt-2 text-sm font-medium text-red-700">
+          {error}
+        </p>
+      )}
+    </fieldset>
+  );
+}

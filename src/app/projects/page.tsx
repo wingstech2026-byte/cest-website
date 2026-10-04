@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
+import { getProjects } from "@/lib/content";
 import { PageHero } from "@/components/ui/PageHero";
-import { FeaturedProjects, CTABand } from "@/components/sections/Sections";
+import { Container } from "@/components/ui/Section";
+import { ProjectGrid } from "@/components/home/ProjectGrid";
+import { CTABand } from "@/components/sections/Sections";
 
 export const metadata: Metadata = pageMetadata({
   title: "Projects",
@@ -9,16 +12,23 @@ export const metadata: Metadata = pageMetadata({
   path: "/projects",
 });
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const projects = await getProjects();
   return (
     <>
       <PageHero
         eyebrow="Projects"
-        title="Projects & activities"
-        intro="See what CEST is doing on the ground. We publish only what we can verify, so some details are still to be added."
+        title="Work on the ground"
+        intro="See what CEST is doing in the communities it serves. We publish only what we can verify, so some details are still to be added."
         crumbs={[{ label: "Projects" }]}
+        image="/images/cest/farm-site-visit.jpg"
+        imageAlt="CEST members walking between tall crops at a farm site"
       />
-      <FeaturedProjects all />
+      <section className="bg-white py-20 sm:py-28">
+        <Container className="max-w-[90rem]">
+          <ProjectGrid projects={projects} />
+        </Container>
+      </section>
       <CTABand
         title="Want to support a project?"
         text="Partner with CEST or contribute to help these activities grow."

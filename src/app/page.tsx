@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
 import { site } from "@/data/site";
+import { getPrograms } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
-import {
-  ContactCTA,
-  DonateCTA,
-  FeaturedProjects,
-  GetInvolvedSection,
-  Hero,
-  ImpactSection,
-  Intro,
-  LatestNews,
-  PartnersPlaceholder,
-  ProgramsInFocus,
-  StoryTeaser,
-  VisionMission,
-  WhatWeDo,
-} from "@/components/sections/Sections";
+import { Hero } from "@/components/home/Hero";
+import { ChangeStatement } from "@/components/home/ChangeStatement";
+import { ImpactNumbers } from "@/components/home/ImpactNumbers";
+import { WhatWeDo } from "@/components/home/WhatWeDo";
+import { ProgramExplorer } from "@/components/home/ProgramExplorer";
+import { RealStories } from "@/components/home/RealStories";
+import { DocumentaryStory } from "@/components/home/DocumentaryStory";
+import { HistoryTimeline } from "@/components/home/HistoryTimeline";
+import { MissionVision } from "@/components/home/MissionVision";
+import { FeaturedProjects } from "@/components/home/FeaturedProjects";
+import { GetInvolvedPaths } from "@/components/home/GetInvolvedPaths";
+import { Accountability } from "@/components/home/Accountability";
+import { LatestNews } from "@/components/home/LatestNews";
+import { Partners } from "@/components/home/Partners";
+import { DonateBand } from "@/components/home/DonateBand";
 
 export const metadata: Metadata = {
   ...pageMetadata({
@@ -26,22 +27,26 @@ export const metadata: Metadata = {
   title: { absolute: `${site.name} (${site.shortName}) | ${site.motto}` },
 };
 
-export default function HomePage() {
+/** The homepage is a journey: hero → change → impact → what we do → programs → stories → history → purpose → projects → act → trust → donate → footer. */
+export default async function HomePage() {
+  const programs = await getPrograms();
   return (
     <>
       <Hero />
-      <Intro />
+      <ChangeStatement />
+      <ImpactNumbers />
       <WhatWeDo />
-      <ProgramsInFocus />
-      <StoryTeaser />
-      <VisionMission />
+      <ProgramExplorer programs={programs} />
+      <RealStories />
+      <DocumentaryStory />
+      <HistoryTimeline />
+      <MissionVision />
       <FeaturedProjects />
-      <ImpactSection />
-      <GetInvolvedSection />
+      <GetInvolvedPaths />
+      <Accountability />
       <LatestNews />
-      <PartnersPlaceholder />
-      <DonateCTA />
-      <ContactCTA />
+      <Partners />
+      <DonateBand />
     </>
   );
 }

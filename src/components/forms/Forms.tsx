@@ -4,9 +4,7 @@ import {
   submitMembership,
   submitNewsletter,
   submitPartner,
-  submitVolunteer,
 } from "@/lib/actions";
-import { availabilityOptions, volunteerInterests } from "@/lib/schemas";
 import { FormShell } from "./FormShell";
 import { CheckboxField, SelectField, TextAreaField, TextField } from "./Fields";
 
@@ -23,11 +21,11 @@ const privacyNote = (
 export function ContactForm() {
   return (
     <FormShell action={submitContact} submitLabel="Send message" successTitle="Message sent">
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <TextField name="name" label="Your name" required autoComplete="name" />
         <TextField name="email" label="Email" type="email" required autoComplete="email" inputMode="email" />
       </div>
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <TextField name="phone" label="Phone" type="tel" autoComplete="tel" inputMode="tel" />
         <TextField name="subject" label="Subject" required />
       </div>
@@ -37,39 +35,14 @@ export function ContactForm() {
   );
 }
 
-export function VolunteerForm() {
-  return (
-    <FormShell
-      action={submitVolunteer}
-      submitLabel="Submit Volunteer Application"
-      pendingLabel="Submitting…"
-      successTitle="Application received"
-    >
-      <div className="grid gap-5 sm:grid-cols-2">
-        <TextField name="fullName" label="Full name" required autoComplete="name" />
-        <TextField name="email" label="Email" type="email" required autoComplete="email" inputMode="email" />
-      </div>
-      <div className="grid gap-5 sm:grid-cols-2">
-        <TextField name="phone" label="Phone" type="tel" required autoComplete="tel" inputMode="tel" hint="Include your country code, e.g. +232…" />
-        <TextField name="location" label="Location" required autoComplete="address-level2" hint="Town or city, and country" />
-      </div>
-      <SelectField name="interest" label="Area of interest" required options={volunteerInterests} />
-      <TextAreaField name="skills" label="Skills" required rows={3} maxLength={1000} hint="For example teaching, farming, IT, writing, photography, accounting." />
-      <SelectField name="availability" label="Availability" required options={availabilityOptions} />
-      <TextAreaField name="motivation" label="Why would you like to volunteer?" required rows={5} maxLength={1500} />
-      <CheckboxField name="consent">{privacyNote}</CheckboxField>
-    </FormShell>
-  );
-}
-
 export function PartnerForm() {
   return (
     <FormShell action={submitPartner} submitLabel="Send partnership enquiry" successTitle="Enquiry received">
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <TextField name="organisation" label="Organisation" required autoComplete="organization" />
         <TextField name="contactName" label="Contact person" required autoComplete="name" />
       </div>
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <TextField name="email" label="Email" type="email" required autoComplete="email" inputMode="email" />
         <TextField name="phone" label="Phone" type="tel" autoComplete="tel" inputMode="tel" />
       </div>
@@ -95,11 +68,11 @@ export function PartnerForm() {
 export function MembershipForm() {
   return (
     <FormShell action={submitMembership} submitLabel="Express interest in joining" successTitle="Interest received">
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <TextField name="fullName" label="Full name" required autoComplete="name" />
         <TextField name="email" label="Email" type="email" required autoComplete="email" inputMode="email" />
       </div>
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <TextField name="phone" label="Phone" type="tel" required autoComplete="tel" inputMode="tel" />
         <TextField name="location" label="Where do you live?" required hint="Town or city, and country (home or diaspora)" />
       </div>

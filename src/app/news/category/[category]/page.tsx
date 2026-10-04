@@ -4,8 +4,8 @@ import { categorySlug, postCategories } from "@/data/news";
 import { pageMetadata } from "@/lib/seo";
 import { getPostsByCategory } from "@/lib/content";
 import { PageHero } from "@/components/ui/PageHero";
-import { Section } from "@/components/ui/Section";
-import { PostCard } from "@/components/cards/Cards";
+import { NewsMagazine } from "@/components/home/NewsMagazine";
+import { Container } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { CategoryNav } from "@/components/sections/CategoryNav";
 
@@ -45,7 +45,8 @@ export default async function CategoryPage({ params }: Props) {
         title={name}
         crumbs={[{ label: "News & Stories", href: "/news" }, { label: name }]}
       />
-      <Section tone="canvas">
+      <section className="bg-white py-16 sm:py-24">
+        <Container className="max-w-[90rem]">
         <CategoryNav active={category} />
         {posts.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-sand-300 p-10 text-center">
@@ -56,15 +57,10 @@ export default async function CategoryPage({ params }: Props) {
             </ButtonLink>
           </div>
         ) : (
-          <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((p) => (
-              <li key={p.slug}>
-                <PostCard post={p} />
-              </li>
-            ))}
-          </ul>
+          <NewsMagazine posts={posts} />
         )}
-      </Section>
+        </Container>
+      </section>
     </>
   );
 }

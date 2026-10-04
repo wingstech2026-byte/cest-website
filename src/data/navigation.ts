@@ -1,7 +1,6 @@
 import type { NavItem } from "@/types";
 
 export const mainNav: NavItem[] = [
-  { label: "Home", href: "/" },
   {
     label: "About",
     href: "/about",
@@ -11,7 +10,8 @@ export const mainNav: NavItem[] = [
       { label: "Objectives", href: "/about#objectives", description: "What CEST sets out to do" },
       { label: "Values", href: "/about#values", description: "Principles that guide us" },
       { label: "Organizational Structure", href: "/about#structure", description: "How CEST is governed" },
-      { label: "Leadership", href: "/leadership", description: "Executive and corporate structure" },
+      { label: "Leadership", href: "/leadership", description: "The people behind the mission" },
+      { label: "Accountability", href: "/accountability", description: "Constitution and governance documents" },
     ],
   },
   {
@@ -28,7 +28,15 @@ export const mainNav: NavItem[] = [
     ],
   },
   { label: "Projects", href: "/projects" },
-  { label: "Impact", href: "/impact" },
+  {
+    label: "Impact",
+    href: "/impact",
+    children: [
+      { label: "Impact numbers", href: "/impact", description: "Verified results, as they are confirmed" },
+      { label: "Where we work", href: "/impact#where-we-work", description: "Locations in Sierra Leone" },
+      { label: "Gallery", href: "/gallery", description: "Photos from CEST activities" },
+    ],
+  },
   {
     label: "Get Involved",
     href: "/get-involved",
@@ -39,7 +47,7 @@ export const mainNav: NavItem[] = [
       { label: "Membership", href: "/membership", description: "Express interest in joining" },
     ],
   },
-  { label: "News & Stories", href: "/news" },
+  { label: "News", href: "/news" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -49,6 +57,7 @@ export const footerLinks = {
     { label: "Our Projects", href: "/projects" },
     { label: "Impact", href: "/impact" },
     { label: "Leadership", href: "/leadership" },
+    { label: "Accountability", href: "/accountability" },
     { label: "Gallery", href: "/gallery" },
     { label: "News & Stories", href: "/news" },
   ],

@@ -1,12 +1,12 @@
 "use client";
 
-import { createContext, useActionState, useContext, useEffect, useId, useRef, type ReactNode } from "react";
+import { createContext, useActionState, useContext, useEffect, useId, useRef, type ReactNode, type RefObject } from "react";
 import { CircleAlert, CircleCheck, LoaderCircle } from "lucide-react";
 import type { FormState } from "@/types";
 import { Button } from "@/components/ui/Button";
 
 const initialState: FormState = { status: "idle" };
-const FormCtx = createContext<{ state: FormState; formId: string }>({ state: initialState, formId: "form" });
+export const FormCtx = createContext<{ state: FormState; formId: string }>({ state: initialState, formId: "form" });
 
 export function useFormState() {
   return useContext(FormCtx).state;
@@ -93,14 +93,7 @@ export function FormShell({
 
         {children}
 
-        {/* Spam protection: humans never see or fill these. */}
-        <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
-          <label>
-            Leave this field empty
-            <input type="text" name="company_website" tabIndex={-1} autoComplete="off" defaultValue="" />
-          </label>
-          <input ref={startedRef} type="hidden" name="form_started_at" defaultValue="" />
-        </div>
+        <SpamFields startedRef={startedRef} />
 
         <Button type="submit" disabled={pending} variant={tone === "dark" ? "accent" : "primary"} className={compact ? "w-full sm:w-auto" : "w-full sm:w-auto"}>
           {pending && <LoaderCircle aria-hidden="true" className="size-5 animate-spin" />}
@@ -108,5 +101,18 @@ export function FormShell({
         </Button>
       </form>
     </FormCtx.Provider>
+  );
+}
+
+/** Spam protection fields: humans never see or fill these (honeypot + "form opened at" timestamp). */
+export function SpamFields({ startedRef }: { startedRef: RefObject<HTMLInputElement | null> }) {
+  return (
+    <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+      <label>
+        Leave this field empty
+        <input type="text" name="company_website" tabIndex={-1} autoComplete="off" defaultValue="" />
+      </label>
+      <input ref={startedRef} type="hidden" name="form_started_at" defaultValue="" />
+    </div>
   );
 }

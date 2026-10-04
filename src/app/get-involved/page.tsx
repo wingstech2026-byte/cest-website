@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/ui/PageHero";
-import { Section } from "@/components/ui/Section";
-import { InvolvementGrid } from "@/components/sections/Sections";
+import { GetInvolvedPaths } from "@/components/home/GetInvolvedPaths";
 
 export const metadata: Metadata = pageMetadata({
   title: "Get Involved",
@@ -22,9 +21,7 @@ export default function GetInvolvedPage() {
         image="/images/cest/participants-organisers.jpg"
         imageAlt="Pupils and CEST organisers standing together after a spelling bee event"
       />
-      <Section tone="canvas">
-        <InvolvementGrid headingLevel="h2" />
-      </Section>
+      <GetInvolvedPaths />
     </>
   );
 }

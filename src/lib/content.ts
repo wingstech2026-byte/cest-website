@@ -13,7 +13,11 @@ import { posts, categorySlug } from "@/data/news";
 import { leadership } from "@/data/leadership";
 import { impactStats } from "@/data/impact";
 import { gallery } from "@/data/gallery";
-import type { GalleryItem, ImpactStat, Person, Post, PostCategory, Program, Project } from "@/types";
+import { locations } from "@/data/locations";
+import { partners } from "@/data/partners";
+import { documents } from "@/data/documents";
+import type { GalleryItem, ImpactStat, Location, Partner, Person, Post, PostCategory, Program, Project } from "@/types";
+import type { OrgDocument } from "@/data/documents";
 
 export async function getPrograms(): Promise<Program[]> {
   return programs;
@@ -55,4 +59,16 @@ export async function getImpactStats(): Promise<ImpactStat[]> {
 
 export async function getGallery(): Promise<GalleryItem[]> {
   return gallery;
+}
+
+export async function getLocations(): Promise<Location[]> {
+  return locations;
+}
+
+export async function getPartners(): Promise<Partner[]> {
+  return partners;
+}
+
+export async function getDocuments(): Promise<OrgDocument[]> {
+  return documents;
 }

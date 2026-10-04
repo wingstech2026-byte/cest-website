@@ -7,6 +7,8 @@
 */
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  /* Editorial serif for statement headlines */
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
 
   /* Primary: growth & sustainability (green) */
   --color-primary-50: #eef6ea;
@@ -38,6 +40,7 @@
   --color-sand-200: #e7dfd0;
   --color-sand-300: #d6ccb8;
   --color-ink: #1d2a22;
+  --color-night: #0b1f14;
   --color-muted: #52605a;
 
   --shadow-card: 0 1px 2px rgb(29 42 34 / 0.06), 0 8px 24px -12px rgb(29 42 34 / 0.18);
@@ -62,6 +65,7 @@ body {
 }
 
 h1, h2, h3, h4 {
+  overflow-wrap: break-word;
   line-height: 1.15;
   letter-spacing: -0.015em;
   text-wrap: balance;
@@ -152,4 +156,83 @@ details[open] > summary .chevron {
   header, footer, .no-print {
     display: none !important;
   }
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion system: CSS-only, so the hero paints instantly (no JS needed) */
+/* ------------------------------------------------------------------ */
+@keyframes rise-in {
+  from { transform: translateY(105%); }
+  to { transform: translateY(0); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes ken-burns {
+  from { transform: scale(1.12); }
+  to { transform: scale(1.02); }
+}
+@keyframes scroll-cue {
+  0% { transform: translateY(-100%); }
+  60%, 100% { transform: translateY(100%); }
+}
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -18px, 0); }
+}
+@keyframes page-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Hero choreography: background 0ms, heading 200ms, description 400ms, buttons 600ms, indicator 800ms */
+.hero-bg { animation: fade-in 900ms ease-out both; }
+.hero-zoom { animation: ken-burns 14s ease-out both; will-change: transform; }
+.hero-line { display: block; overflow: hidden; padding-bottom: 0.08em; }
+.hero-line > span { display: block; animation: rise-in 900ms cubic-bezier(0.2, 0.7, 0.1, 1) both; }
+.hero-line:nth-child(1) > span { animation-delay: 200ms; }
+.hero-line:nth-child(2) > span { animation-delay: 320ms; }
+.hero-line:nth-child(3) > span { animation-delay: 440ms; }
+.hero-sub { animation: fade-up 800ms ease-out 400ms both; }
+.hero-cta { animation: fade-up 800ms ease-out 600ms both; }
+.enter { animation: fade-up 700ms ease-out both; }
+.hero-cue { animation: fade-in 800ms ease-out 800ms both; }
+.cue-line { position: relative; overflow: hidden; }
+.cue-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  animation: scroll-cue 1.8s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+.float-slow { animation: drift 9s ease-in-out infinite; }
+
+/* Page transition (see src/app/template.tsx): opacity only, ~300ms */
+.page-enter { animation: page-in 300ms ease-out both; }
+
+/* Link underline that expands from the left */
+.link-underline { position: relative; }
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0.15em;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+.link-underline:hover::after,
+.link-underline:focus-visible::after,
+.link-underline[aria-current="page"]::after { transform: scaleX(1); }
+
+/* Reveal helpers used by scroll-triggered components (hidden state only exists when JS runs) */
+@media (prefers-reduced-motion: reduce) {
+  .hero-zoom, .float-slow { animation: none !important; }
+  .cue-line::after { animation: none !important; transform: translateY(0); }
 }

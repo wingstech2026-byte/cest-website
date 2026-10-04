@@ -6,19 +6,19 @@ export const metadata: Metadata = { title: "Page not found", robots: { index: fa
 
 export default function NotFound() {
   return (
-    <Section tone="canvas" className="min-h-[60vh]">
+    <Section tone="night" className="min-h-[80vh] pt-44">
       <div className="mx-auto max-w-xl text-center">
-        <p className="text-sm font-bold uppercase tracking-[0.14em] text-secondary-700">Error 404</p>
+        <p className="text-sm font-bold uppercase tracking-[0.14em] text-accent-300">Error 404</p>
         <h1 className="mt-3 text-4xl font-extrabold">We couldn’t find that page</h1>
-        <p className="mt-4 text-lg text-muted">
+        <p className="mt-4 text-lg text-white/85">
           The page may have moved or the link may be wrong. Try one of these instead.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <ButtonLink href="/">Go to homepage</ButtonLink>
-          <ButtonLink href="/programs" variant="outline">
+          <ButtonLink href="/" variant="accent">Go to homepage</ButtonLink>
+          <ButtonLink href="/programs" variant="outlineLight">
             Our programs
           </ButtonLink>
-          <ButtonLink href="/contact" variant="outline">
+          <ButtonLink href="/contact" variant="outlineLight">
             Contact us
           </ButtonLink>
         </div>
