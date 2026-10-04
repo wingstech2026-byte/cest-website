@@ -51,6 +51,12 @@ export const site = {
   logo: "/logo/cest-logo.jpg",
 } as const;
 
+/** Website developer credit shown in the footer. This is NOT CEST's WhatsApp number. */
+export const developer = {
+  name: "S.A. Marrah",
+  whatsappNumber: "8619382020640",
+} as const;
+
 export const fullAddress = `${site.address.street}, ${site.address.locality}, ${site.address.country}`;
 
 /** Legal status shown as a trust signal. Sourced from certificates supplied by CEST. Numbers are deliberately NOT published. */

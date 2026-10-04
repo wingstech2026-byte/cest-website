@@ -2,8 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { footerLinks } from "@/data/navigation";
-import { fullAddress, site } from "@/data/site";
+import { developer, fullAddress, site } from "@/data/site";
 import { NewsletterForm } from "@/components/forms/Forms";
+import { whatsappLink } from "@/lib/utils";
 import { Placeholder } from "@/components/ui/Placeholder";
 import { FacebookIcon, InstagramIcon, LinkedInIcon, XIcon, YouTubeIcon } from "@/components/ui/SocialIcons";
 
@@ -132,6 +133,18 @@ export function Footer() {
             ))}
           </ul>
         </div>
+        <p className="mx-auto max-w-7xl px-5 pb-6 text-sm text-white/85 sm:px-8">
+          Developed by{" "}
+          <a
+            href={whatsappLink(developer.whatsappNumber, "Hello, I saw the CEST website and would like to get in touch.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-white underline hover:text-accent-300"
+          >
+            {developer.name}
+            <span className="sr-only"> (contact on WhatsApp, opens in a new tab)</span>
+          </a>
+        </p>
       </div>
     </footer>
   );
