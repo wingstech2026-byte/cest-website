@@ -133,9 +133,17 @@ export function Footer() {
             ))}
           </ul>
         </div>
-        <p className="mx-auto max-w-7xl px-5 pb-6 text-sm text-white/85 sm:px-8">
-          Developed by{" "}
-          <a
+        <div className="mx-auto flex max-w-7xl items-center gap-3 px-5 pb-6 text-sm text-white/85 sm:px-8">
+          <Image
+            src={developer.photo}
+            alt={`Portrait of ${developer.name}, website developer`}
+            width={40}
+            height={40}
+            className="size-10 rounded-full border-2 border-white/30 object-cover"
+          />
+          <p>
+            Developed by{" "}
+            <a
             href={whatsappLink(developer.whatsappNumber, "Hello, I saw the CEST website and would like to get in touch.")}
             target="_blank"
             rel="noopener noreferrer"
@@ -144,7 +152,8 @@ export function Footer() {
             {developer.name}
             <span className="sr-only"> (contact on WhatsApp, opens in a new tab)</span>
           </a>
-        </p>
+          </p>
+        </div>
       </div>
     </footer>
   );

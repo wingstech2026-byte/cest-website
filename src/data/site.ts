@@ -62,6 +62,7 @@ export const site = {
 export const developer = {
   name: "S.A. Marrah",
   whatsappNumber: "8619382020640",
+  photo: "/images/developer.jpg",
 } as const;
 
 export const fullAddress = `${site.address.street}, ${site.address.locality}, ${site.address.country}`;
