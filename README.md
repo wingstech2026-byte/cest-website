@@ -145,7 +145,7 @@ To connect a CMS later (Sanity, Strapi, Supabase…), re-implement the functions
 Search the site for yellow `[ … ]` chips, or search the code for `[ADD`. The full list:
 
 1. **Leadership**: names and photos for every role (`[PHOTO] [NAME]`), only once the people have approved publication.
-2. **Social media links**, **Google Maps embed**. (WhatsApp is set to +232 78865887, confirmed by CEST.)
+2. **Social media links**, and a precise **Google Maps pin** for 38A Kono Road (the current map marks Masingbi town; set `NEXT_PUBLIC_MAP_EMBED_URL`). (WhatsApp is set to +232 78865887, confirmed by CEST.)
 3. **Donation payment information** (bank/mobile-money/Stripe/PayPal details). Nothing is invented.
 4. **Impact figures**: only verified numbers.
 5. **Project details**: dates, participating schools/pupils, farmers, results, and real status for the *Quiz & Spelling Bee* and *Food Security & Farming* entries.

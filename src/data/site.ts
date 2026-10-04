@@ -40,8 +40,15 @@ export const site = {
     youtube: process.env.NEXT_PUBLIC_YOUTUBE_URL ?? "",
     linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL ?? "",
   },
-  /** Optional Google Maps embed URL (Share > Embed a map > src). */
-  mapEmbedUrl: process.env.NEXT_PUBLIC_MAP_EMBED_URL ?? "",
+  /**
+   * Map pin for Masingbi (coordinates from the Google Maps place CEST supplied).
+   * This marks the town, not the exact building; replace with a precise pin for
+   * 38A Kono Road via NEXT_PUBLIC_MAP_EMBED_URL when available.
+   */
+  mapCoordinates: { lat: 8.636758, lng: -11.4722494 },
+  mapEmbedUrl:
+    process.env.NEXT_PUBLIC_MAP_EMBED_URL ||
+    "https://maps.google.com/maps?q=8.636758,-11.4722494&z=15&output=embed",
   foundedAs: {
     name: "Kunike Academic Descendants’ Association (KADA)",
     year: 2014,

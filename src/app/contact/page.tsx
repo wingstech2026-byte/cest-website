@@ -17,7 +17,7 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function ContactPage() {
-  const mapQuery = encodeURIComponent(`${site.address.street}, ${site.address.locality}, ${site.address.country}`);
+  const mapsLink = `https://www.google.com/maps/search/?api=1&query=${site.mapCoordinates.lat},${site.mapCoordinates.lng}`;
   return (
     <>
       <PageHero
@@ -99,9 +99,10 @@ export default function ContactPage() {
           Find us
         </h2>
         {site.mapEmbedUrl ? (
+          <>
           <div className="aspect-[16/9] overflow-hidden rounded-2xl border border-sand-200">
             <iframe
-              title={`Map showing ${fullAddress}`}
+              title="Map showing Masingbi, Sierra Leone"
               src={site.mapEmbedUrl}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -109,6 +110,13 @@ export default function ContactPage() {
               allowFullScreen
             />
           </div>
+          <p className="mt-4 text-sm text-muted">
+            The pin marks Masingbi town.{" "}
+            <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="font-semibold text-primary-700 underline">
+              Open in Google Maps<span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          </p>
+          </>
         ) : (
           <div className="flex min-h-64 flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-sand-300 bg-canvas p-8 text-center">
             <MapPin aria-hidden="true" className="size-10 text-secondary-700" />
@@ -116,7 +124,7 @@ export default function ContactPage() {
               An embedded map will appear here once CEST confirms the map location.{" "}
               <Placeholder>[ADD GOOGLE MAPS EMBED URL]</Placeholder>
             </p>
-            <ButtonLink href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} variant="outline">
+            <ButtonLink href={mapsLink} variant="outline">
               Open in Google Maps
             </ButtonLink>
           </div>
