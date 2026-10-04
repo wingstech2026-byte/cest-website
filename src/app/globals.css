@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+/*
+  CEST design tokens.
+  Colours are taken from the CEST logo (green hand, blue/amber/terracotta figures)
+  and darkened where needed so text and buttons meet WCAG 2.1 AA contrast.
+*/
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Primary: growth & sustainability (green) */
+  --color-primary-50: #eef6ea;
+  --color-primary-100: #d9ebd0;
+  --color-primary-200: #b4d7a3;
+  --color-primary-500: #4f9a3d;
+  --color-primary-600: #2a7a3c;
+  --color-primary-700: #1f5f2e;
+  --color-primary-800: #174a24;
+  --color-primary-900: #0f3319;
+
+  /* Secondary: trust & stability (blue) */
+  --color-secondary-50: #e8f4fb;
+  --color-secondary-100: #c9e5f4;
+  --color-secondary-600: #0a6a99;
+  --color-secondary-700: #0b5a82;
+  --color-secondary-800: #0b4a6a;
+
+  /* Accent: warmth & hope (amber) and clay (terracotta, decorative only) */
+  --color-accent-300: #f7c860;
+  --color-accent-400: #f2b232;
+  --color-accent-500: #e8a317;
+  --color-clay-500: #b5654a;
+
+  /* Neutrals: warm, humane */
+  --color-canvas: #faf7f2;
+  --color-surface: #ffffff;
+  --color-sand-100: #f3ede2;
+  --color-sand-200: #e7dfd0;
+  --color-sand-300: #d6ccb8;
+  --color-ink: #1d2a22;
+  --color-muted: #52605a;
+
+  --shadow-card: 0 1px 2px rgb(29 42 34 / 0.06), 0 8px 24px -12px rgb(29 42 34 / 0.18);
+  --radius-card: 1rem;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Visible, consistent focus ring (WCAG 2.4.7) */
+:focus-visible {
+  outline: 3px solid var(--color-secondary-600);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--color-primary-800);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  transition: top 0.15s;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Thin woven divider used sparingly between sections */
+.weave {
+  height: 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-primary-600) 0 28px,
+    var(--color-accent-400) 28px 40px,
+    var(--color-secondary-600) 40px 68px,
+    var(--color-clay-500) 68px 80px
+  );
+}
+
+/* Native <details> accordion: tidy marker, rotate chevron */
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] > summary .chevron {
+  transform: rotate(180deg);
+}
+
+/* Visible styling for any content that still needs to be supplied by CEST */
+.placeholder-chip {
+  display: inline;
+  background: #fff4cf;
+  color: #5c4300;
+  border: 1px dashed #c99a1b;
+  border-radius: 0.35rem;
+  padding: 0.05rem 0.4rem;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+/* Hero image placeholder pattern */
+.pattern-dots {
+  background-image: radial-gradient(rgb(255 255 255 / 0.12) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  header, footer, .no-print {
+    display: none !important;
+  }
+}
